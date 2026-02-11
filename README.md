@@ -1,6 +1,8 @@
 # DeepSynth Bench
 
 
+![Image](https://github.com/agentdeepsynthesis/deepsynth-bench/blob/main/images/deepsynth_figure1_final.gif)]
+
 ## Repository Structure
 ```
 deepsynth-benchmark/
