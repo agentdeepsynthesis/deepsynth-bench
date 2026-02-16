@@ -2,7 +2,7 @@
 <img src="rl/open-instruct/assets/DEEPSYNTH" alt="DEEPSYNTH Bench" width="500"/>
 
 # DEEPSYTH: A Benchmark for Deep Information Synthesis
-
+</div>
 
 ![Image](https://github.com/agentdeepsynthesis/deepsynth-bench/blob/main/images/deepsynth_figure1_final.gif)
 
