@@ -1,11 +1,12 @@
 <div align="center">
-<img src="images/DEEPSYNTH.png" alt="DEEPSYNTH Bench" width="500"/>
+<img src="images/DEEPSYNTH.png" alt="DEEPSYNTH Bench" width="300"/>
 
 # DEEPSYTH: A Benchmark for Deep Information Synthesis
 
-
 ![Image](https://github.com/agentdeepsynthesis/deepsynth-bench/blob/main/images/deepsynth_figure1_final.gif)
 </div>
+
+
 ## Repository Structure
 ```
 deepsynth-benchmark/
