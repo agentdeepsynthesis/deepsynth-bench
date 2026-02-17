@@ -1,5 +1,5 @@
 <div align="center">
-<img src="images/deepsynth_logo.png" alt="DEEPSYNTH Bench" width="500"/>
+<img src="images/deepsynth_logo_black.png" alt="DEEPSYNTH Bench" width="500"/>
 
 # DEEPSYTH: A Benchmark for Deep Information Synthesis
 
