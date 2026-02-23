@@ -1,10 +1,10 @@
 <div align="center">
-<img src="images/octopus_logo.png" alt="DEEPSYNTH Bench" width="400"/>
+<img src="assets/octopus_logo.png" alt="DEEPSYNTH Bench" width="400"/>
 
 
 # DEEPSYNTH: A Benchmark for Deep Information Synthesis
 
-![Image](https://github.com/agentdeepsynthesis/deepsynth-bench/blob/main/images/deepsynth_figure1.gif)
+![Image](https://github.com/agentdeepsynthesis/deepsynth-bench/blob/main/assets/deepsynth_figure1.gif)
 </div>
 
 
