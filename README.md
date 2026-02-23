@@ -12,22 +12,13 @@
 ```
 deepsynth-benchmark/
 ├── README.md
-├── DEEPSYNTH_lite.json          # Dev set: 40 tasks with questions, answers, and plans
-├── decompositions/
-│   ├── 003.json                 # Detailed decomposition with intermediate answers
-│   └── intermediate_answers_schemas/
-│       └── 003.schema.json      # JSON schema for intermediate answer types
+├── data/
+│   ├──DEEPSYNTH_lite.json          # Dev set: 40 tasks with questions, answers, and plans
 ├── evaluation/
-│   ├── evaluate.py              # Evaluation script
-│   └── metrics.py               # F1, EM, and LLM-judge metrics
+│   ├── evaluate.py                # Evaluation script
+│   └── metrics.py                 # F1, EM, and LLM-judge metrics
 └── assets/
     └── deepsynth_overview.png
-```
-
-```
-1. *DEEPSYNTH_lite.json:* contains  (Dev set) 40 tasks (with questions, answers, and intermediate steps (plan))
-2. *decompositions/intermediate_answers_schemas/003.schema.json:* one example from the dev set with the schema for the intermediate answer types.
-3. *decompositions/003.json:* contains the decomposition and intermediate answers. 
 ```
 
 ## Evaluation
