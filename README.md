@@ -4,7 +4,7 @@
 
 # DEEPSYNTH: A Benchmark for Deep Information Synthesis
 
-![Image](https://github.com/agentdeepsynthesis/deepsynth-bench/blob/main/images/deepsynth_figure1_final.gif)
+![Image](https://github.com/agentdeepsynthesis/deepsynth-bench/blob/main/images/deepsynth_figure1.gif)
 </div>
 
 
