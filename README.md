@@ -2,7 +2,7 @@
 <img src="assets/octopus_logo.png" alt="DEEPSYNTH Bench" width="400"/>
 
 
-# DEEPSYNTH: A Benchmark for Deep Information Synthesis
+# A Benchmark for Deep Information Synthesis
 
 ![Image](https://github.com/agentdeepsynthesis/deepsynth-bench/blob/main/assets/deepsynth_figure1.gif)
 </div>
