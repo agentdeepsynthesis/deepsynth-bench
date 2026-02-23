@@ -90,4 +90,7 @@ for task in benchmark['tasks']:
     score = evaluate(prediction, expected_answer)
 ```
 
-Disclaimer: This open source project is not an official Huawei product, Huawei is not expected to provide support for this project
+### License
+We follow Apache License Version 2.0. Please see the [License](LICENSE) file for more information.
+
+Disclaimer: This open source project is not an official Huawei product, Huawei is not expected to provide support for this project.
