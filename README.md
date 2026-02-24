@@ -62,7 +62,7 @@ with open(dev_path, "r") as f:
 # Load the test set (questions only)
 test_path = hf_hub_download(
     repo_id="DeepSynthesisTeam/deepsynth-bench",
-    filename="data/deepsynth_questions_only_all.json",
+    filename="data/test.json",
     repo_type="dataset"
 )
 with open(test_path, "r") as f:
