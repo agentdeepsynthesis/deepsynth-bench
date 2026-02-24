@@ -32,6 +32,7 @@ deepsynth-benchmark/
 ```python
 import json
 from huggingface_hub import hf_hub_download
+
 # Load the dev set
 dev_path = hf_hub_download(
     repo_id="DeepSynthesisTeam/deepsynth-bench",
@@ -39,7 +40,7 @@ dev_path = hf_hub_download(
     repo_type="dataset"
 )
 
-with open('DEEPSYNTH_lite.json', 'r') as f:
+with open(dev_path, 'r') as f:  
     benchmark = json.load(f)
 ```
 
