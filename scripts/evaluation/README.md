@@ -20,7 +20,7 @@ This directory contains the evaluation pipeline for the **DeepSynth Benchmark**.
 - **`OPENAI_API_KEY`** environment variable set for LLM judge scripts.
 - **Reference benchmark files** in the working directory:
   - `DEEPSYNTH_lite.json` — development set (used by `llm_judge.py` and `llm_judge_pass_n.py`)
-  - `deep_insight_bench_v5_90.json` — test set (used by `eval_static_score.py`)
+  - `deepsynth_questions_only_all.json` — test set (used by `eval_static_score.py`)
 
 ## Scripts
 
