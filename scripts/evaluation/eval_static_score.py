@@ -22,7 +22,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 # ---------------------------------------------------------------------------
 
 # Benchmark reference files (update paths as needed)
-REFERENCE_FILE_TEST = "deep_insight_bench_v5_90.json"
+REFERENCE_FILE_TEST = "deepsynth_questions_only_all.json"
 REFERENCE_FILE_DEV = "DEEPSYNTH_lite.json"
 
 # Total number of questions used to normalise strict accuracy
@@ -577,7 +577,7 @@ def main() -> None:
 
     try:
         results = evaluate_datasets(
-            gold_file=REFERENCE_FILE_TEST,
+            gold_file=REFERENCE_FILE_DEV,
             model_file=file_path,
             similarity_threshold=0.1,
         )
