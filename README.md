@@ -53,7 +53,7 @@ from huggingface_hub import hf_hub_download
 # Load the dev set (with gold answers)
 dev_path = hf_hub_download(
     repo_id="DeepSynthesisTeam/deepsynth-bench",
-    filename="data/DEEPSYNTH_lite.json",
+    filename="data/dev.json",
     repo_type="dataset"
 )
 with open(dev_path, "r") as f:
