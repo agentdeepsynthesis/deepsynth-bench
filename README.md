@@ -7,7 +7,7 @@
 ![Image](https://github.com/agentdeepsynthesis/deepsynth-bench/blob/main/assets/deepsynth_figure1.gif)
 </div>
 
-*DEEPSYNTH-Bench** is a challenging benchmark designed to evaluate the ability of AI systems to perform *deep information synthesis* — integrating, reasoning over, and consolidating information from multiple sources to answer complex, multi-step questions. Unlike retrieval-focused benchmarks, DEEPSYNTH-Bench requires models to go beyond surface-level extraction and produce structured, precise answers that reflect genuine analytical reasoning.
+**DEEPSYNTH-Bench** is a challenging benchmark designed to evaluate the ability of AI systems to perform *deep information synthesis* — integrating, reasoning over, and consolidating information from multiple sources to answer complex, multi-step questions. Unlike retrieval-focused benchmarks, DEEPSYNTH-Bench requires models to go beyond surface-level extraction and produce structured, precise answers that reflect genuine analytical reasoning.
 
 Key properties of the benchmark:
 - **Multi-step reasoning**: Questions require chaining several reasoning steps or data sources.
