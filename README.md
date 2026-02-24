@@ -41,7 +41,7 @@ The dataset is hosted on Hugging Face at [`DeepSynthesisTeam/deepsynth-bench`](h
 
 | File | Split | Description |
 |------|-------|-------------|
-| `DEEPSYNTH_lite.json` | Dev (40 tasks) | Questions, gold answers, reasoning plans, and full decompositions with intermediate steps |
+| `dev.json` | Dev (40 tasks) | Questions, gold answers, reasoning plans, and full decompositions with intermediate steps |
 | `deepsynth_questions_only_all.json` | Test (80 tasks) | Questions only — for leaderboard submission |
 
 ### Loading the Data
