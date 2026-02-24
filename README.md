@@ -62,8 +62,14 @@ Model predictions should be a JSON file with task IDs mapped to answers:
 
 ```python
 import json
-
+from huggingface_hub import hf_hub_download
 # Load the dev set
+dev_path = hf_hub_download(
+    repo_id="DeepSynthesisTeam/deepsynth-bench",
+    filename="DEEPSYNTH_lite.json",
+    repo_type="dataset"
+)
+
 with open('DEEPSYNTH_lite.json', 'r') as f:
     benchmark = json.load(f)
 
@@ -76,8 +82,10 @@ for task in benchmark['tasks']:
     # Your agent code here
     prediction = your_agent.solve(question)
     
-    # Evaluate
-    score = evaluate(prediction, expected_answer)
+```
+### 📊 Evaluation 
+```bash
+python scripts/evaluation/eval_static_score.py model_output.json
 ```
 
 ### License
