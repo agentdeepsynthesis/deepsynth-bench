@@ -12,13 +12,26 @@
 deepsynth-benchmark/
 ├── README.md
 ├── data/
-│   ├──DEEPSYNTH_lite.json          # Dev set: 40 tasks with questions, answers, and plans
-├── evaluation/
-│   ├── evaluate.py                # Evaluation script
-│   └── metrics.py                 # F1, EM, and LLM-judge metrics
+│   ├── DEEPSYNTH_lite.json
+├── scripts/
+│   ├── evaluation/
+│   │   ├── eval_static_score.py
+│   │   ├── llm_judge.py
+│   │   ├── llm_judge_pass_n.py
+│   └── baselines/
 └── assets/
     └── deepsynth_overview.png
 ```
+
+
+## 🗂 Dataset Files
+
+| File                                | Description                                                            |
+| ----------------------------------- | ---------------------------------------------------------------------- |
+| `DEEPSYNTH_lite.json`               | Development set: 40 tasks with questions, answers, and reasoning plans |
+| `deepsynth_questions_only_all.json` | Test set: questions only                                               |
+
+
 
 ## Evaluation
 
