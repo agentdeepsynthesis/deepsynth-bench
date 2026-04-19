@@ -1,0 +1,23 @@
+name: Validate submission
+on:
+  pull_request:
+    paths:
+      - 'submissions/**'
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Validate changed submissions
+        run: |
+          for f in $(git diff --name-only origin/main HEAD -- 'submissions/*.json'); do
+            echo "Validating $f"
+            python scripts/evaluation/validate_submission.py "$f" --strict
+          done
