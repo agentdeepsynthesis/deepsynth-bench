@@ -219,12 +219,12 @@ Each baseline has its own `README.md` with model setup, API key requirements, an
 If you use DeepSynth in your research, please cite:
 
 ```bibtex
-@inproceedings{deepsynth2026,
-  title     = {DeepSynth: A Benchmark for Deep Information Synthesis},
-  author    = {DeepSynth Team},
-  booktitle = {International Conference on Learning Representations (ICLR)},
-  year      = {2026},
-  url       = {https://arxiv.org/abs/2602.21143}
+@inproceedings{paul-etal-2026-deepinfosynth,
+  title = {A Benchmark for Deep Information Synthesis},
+  author = {Paul, Debjit and Murphy, Daniel and Gritta, Milan and Cardenas, Ronald and Prokhorov, Victor and Bolliger, Lena Sophia and Toker, Aysim and Miles, Roy and Oncescu, Andreea-Maria and Sivakumar, Jasivan Alex and Borchert, Philipp and Elezi, Ismail and Zhang, Meiru and Lee, Ka Yiu and Zhang, Guchun and Wang, Jun and Lampouras, Gerasimos},
+  booktitle = {The Fourteenth International Conference on Learning Representations},
+  month = apr,
+  year = {2026},
 }
 ```
 
