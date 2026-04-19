@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "agent_name": "ReAct-GPT4o-baseline",
+    "base_model": "gpt-4o-2024-08-06",
+    "scaffold": "ReAct",
+    "tools_used": ["web_search", "python_interpreter"],
+    "organization": "MSR India",
+    "contact_email": "submitter@example.org",
+    "paper_url": "https://arxiv.org/abs/2602.21143",
+    "code_url": "https://github.com/agentdeepsynthesis/deepsynth-baselines",
+    "submission_date": "2026-04-18",
+    "split": "dev",
+    "num_seeds": 3,
+    "uses_external_retrieval": true,
+    "notes": "Baseline reproduction of Table 1, row 2 of the DeepSynth paper."
+  },
+  "predictions": {
+    "001": {
+      "answer": {"Sweden": 1.2, "Finland": 0.8},
+      "cost_usd": 0.42,
+      "latency_s": 18.3,
+      "num_tool_calls": 7
+    },
+    "002": {
+      "answer": {"Brunei": -0.67, "Singapore": -0.34},
+      "cost_usd": 0.31,
+      "latency_s": 14.1,
+      "num_tool_calls": 5
+    }
+  }
+}

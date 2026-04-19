@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use DeepSynth in your research, please cite our paper."
+type: dataset
+title: "DeepSynth: A Benchmark for Deep Information Synthesis"
+authors:
+  - family-names: "Team"
+    given-names: "DeepSynth"
+year: 2026
+url: "https://arxiv.org/abs/2602.21143"
+repository-code: "https://github.com/agentdeepsynthesis/deepsynth-bench"
+license: Apache-2.0
