@@ -2,12 +2,14 @@
   <img src="assets/octopus_logo.png" alt="DeepSynth" width="180"/>
 </p>
 
-<h1 align="center">DeepSynth: A Benchmark for Deep Information Synthesis</h1>
+<h1 align="center">DEEPSYNTH: A Benchmark for Deep Information Synthesis</h1>
 
 <p align="center">
-  <a href="https://arxiv.org/abs/2602.21143"><img alt="Paper" src="https://img.shields.io/badge/paper-arXiv-b31b1b"></a>
+  <a href="https://openreview.net/pdf?id=0Dhpt9aY3n"><img alt="Paper" src="https://img.shields.io/badge/paper-OpenReview-b31b1b"></a>
+  <a href="https://arxiv.org/abs/2602.21143"><img alt="arXiv" src="https://img.shields.io/badge/paper-arXiv-b31b1b"></a>
   <a href="https://huggingface.co/datasets/DeepSynthesisTeam/deepsynth-bench"><img alt="Dataset" src="https://img.shields.io/badge/🤗-dataset-yellow"></a>
   <a href="https://huggingface.co/spaces/DeepSynthesisTeam/deepsynth-leaderboard"><img alt="Leaderboard" src="https://img.shields.io/badge/🤗-leaderboard-orange"></a>
+  <a href="https://agentdeepsynthesis.github.io/deepsynth.github.io/"><img alt="Website" src="https://img.shields.io/badge/project-page-blue"></a>
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache--2.0-blue"></a>
   <img alt="ICLR" src="https://img.shields.io/badge/ICLR-2026-6c5ce7">
 </p>
@@ -16,19 +18,65 @@
   <img src="assets/deepsynth_figure1.gif" alt="DeepSynth overview" width="720"/>
 </p>
 
-> **TL;DR** — DeepSynth is a benchmark of **120 expert-curated tasks across 7 domains and 67 countries** that evaluates LLM agents on multi-step web information synthesis. Unlike shallow retrieval benchmarks, DeepSynth tasks require combining evidence across many sources to produce a single structured answer.
+> **TL;DR** — DEEPSYNTH is a benchmark of **120 expert-curated tasks** across **7 domains** and **67 countries** that evaluates LLM agents on **multi-step web information synthesis**. State-of-the-art systems reach only **8.97 F1 / 17.5 LLM-Judge** — leaving plenty of headroom.
 
 ---
 
 ## 📋 Table of Contents
 
-- [Quickstart](#-quickstart)
 - [Leaderboard](#-leaderboard)
+- [Quickstart](#-quickstart)
 - [Dataset](#-dataset)
 - [Evaluation](#-evaluation)
 - [Submitting to the Leaderboard](#-submitting-to-the-leaderboard)
 - [Baselines](#-baselines)
 - [Citation](#-citation)
+
+---
+
+## 🏆 Leaderboard
+
+Live, interactive leaderboard: **[huggingface.co/spaces/DeepSynthesisTeam/deepsynth-leaderboard](https://huggingface.co/spaces/DeepSynthesisTeam/deepsynth-leaderboard)**
+
+### Test set — 80 held-out tasks · Pass@1
+
+| Rank | Agent | Base model | Access | F1 | Precision | Recall | EM | LLM Judge |
+|:----:|-------|-----------|:------:|----:|----------:|-------:|----:|----------:|
+| 🥇 1 | o3-deep-research | o3-deep-research (2025-08) | 🔒 | **8.97** | 7.73 | 10.69 | 2.50 | **17.50** |
+| 🥈 2 | GPT-5.2-Pro | gpt-5.2-pro (2026-02) | 🔒 | 8.70 | 8.45 | 8.96 | **6.25** | 6.67 |
+| 🥉 3 | Smolagent-GPT5 | gpt-5 | 🔓 | 6.42 | 6.34 | 6.50 | 1.67 | 2.50 |
+| 4 | Gemini-Pro-2.5 | gemini-pro-2.5 (2025-08) | 🔒 | 6.25 | 4.71 | 9.27 | 0.00 | 5.00 |
+| 5 | OWL-GPT4.1 | gpt-4.1 | 🔓 | 5.41 | 4.62 | 6.52 | 1.67 | 12.50 |
+| 6 | GPT-5.1 | gpt-5.1 (2025-08) | 🔒 | 3.83 | 2.98 | 5.37 | 0.00 | 0.00 |
+| 7 | Smolagent-GPT4.1 | gpt-4.1 | 🔓 | 3.75 | 3.27 | 4.39 | 2.50 | 7.50 |
+| 8 | GPT-4.1 | gpt-4.1 (2025-08) | 🔒 | 3.46 | 2.86 | 4.39 | 0.00 | 0.00 |
+| 9 | o3 | o3 (2025-08) | 🔒 | 3.29 | 2.85 | 3.90 | 0.00 | 0.00 |
+| 10 | DeepSeek-R1-Chat | deepseek-r1-chat (2025-08) | 🔓 | 3.23 | 2.75 | 3.90 | 1.67 | 2.50 |
+| 11 | o4-mini | o4-mini (2025-08) | 🔒 | 3.05 | 2.33 | 4.39 | 0.00 | 0.00 |
+| 12 | DeepSeek-R1-Reasoner | deepseek-r1 (2026-02) | 🔓 | 2.80 | 2.73 | 2.87 | 2.50 | 6.67 |
+
+🔒 closed model · 🔓 open-weights. Ranked by F1; LLM Judge used as tiebreaker.
+
+### Dev set — 40 public tasks · Pass@1
+
+Self-reported numbers on the public dev split. Anyone can score themselves locally with the gold answers released alongside the questions.
+
+| Rank | Agent | F1 | LLM Judge |
+|:----:|-------|----:|----------:|
+| 🥇 1 | GPT-5.2 | **15.6** | 5.0 |
+| 🥈 2 | o3-deep-research | 9.9 | **20.0** |
+| 🥉 3 | Gemini-Pro-3 | 8.6 | 15.0 |
+| 4 | o3 | 6.3 | 10.0 |
+| 5 | Smolagent-GPT4.1 | 6.3 | 7.5 |
+| 6 | GPT-5.1 | 6.2 | 12.5 |
+| 7 | Gemini-Pro-2.5 | 5.9 | 5.0 |
+| 8 | DeepSeek-Reasoner | 5.0 | 7.5 |
+| 9 | OWL-GPT4.1 | 4.1 | 12.5 |
+| 10 | o4-mini | 3.3 | 2.5 |
+| 11 | DeepSeek-Chat | 2.1 | 5.0 |
+| 12 | GPT-4.1 | 1.8 | 7.5 |
+
+📈 Submit your agent → **[Submit tab on the leaderboard](https://huggingface.co/spaces/DeepSynthesisTeam/deepsynth-leaderboard)** or open a PR to this repo.
 
 ---
 
@@ -42,8 +90,20 @@ cd deepsynth-bench
 # 2. Install
 pip install -r requirements.txt
 
-# 3. Download the dev set from Hugging Face (requires `huggingface-cli login` once)
-python scripts/download_data.py --split dev
+# 3. Download the dev set from Hugging Face
+python -c "
+from huggingface_hub import hf_hub_download
+import json
+
+dev_path = hf_hub_download(
+    repo_id='DeepSynthesisTeam/deepsynth-bench',
+    filename='DEEPSYNTH_lite.json',
+    repo_type='dataset',
+)
+with open(dev_path) as f:
+    tasks = json.load(f)
+print(f'Loaded {len(tasks)} dev tasks')
+"
 
 # 4. Evaluate a sample prediction file
 python scripts/evaluation/eval_static_score.py \
@@ -51,42 +111,20 @@ python scripts/evaluation/eval_static_score.py \
     --split dev
 ```
 
-Expected output:
-
-```
-EM: 0.175 | F1: 0.304 | LLM-Judge: 0.392
-```
-
----
-
-## 🏆 Leaderboard
-
-Current top entries on the **test** split (120 tasks):
-
-| Rank | Agent | Base Model | Scaffold | EM | F1 | LLM-Judge | Avg Cost |
-|------|-------|------------|----------|----|----|-----------|----------|
-| 1 | DeepSynth-Planner | claude-opus-4-6 | Plan-and-Execute | 0.27 | 0.42 | **0.53** | $0.61 |
-| 2 | ReAct-Claude | claude-opus-4-6 | ReAct | 0.22 | 0.38 | 0.47 | $0.44 |
-| 3 | ReAct-GPT4o | gpt-4o-2024-08-06 | ReAct | 0.18 | 0.31 | 0.41 | $0.38 |
-| 4 | CodeAct-Gemini | gemini-2.5-pro | CodeAct | 0.17 | 0.30 | 0.39 | $0.29 |
-| 5 | Vanilla-Llama | llama-3.3-70b | none | 0.08 | 0.19 | 0.22 | $0.04 |
-
-> *Numbers above are illustrative placeholders — replace with Table 1 of the DeepSynth paper before publishing.*
-
-👉 **[Full interactive leaderboard →](https://huggingface.co/spaces/DeepSynthesisTeam/deepsynth-leaderboard)**
-
 ---
 
 ## 📚 Dataset
 
-DeepSynth is hosted on the Hugging Face Hub:
+DEEPSYNTH is hosted on the Hugging Face Hub:
 **[`DeepSynthesisTeam/deepsynth-bench`](https://huggingface.co/datasets/DeepSynthesisTeam/deepsynth-bench)**
 
-| File | Size | Description |
-|------|------|-------------|
-| `DEEPSYNTH_lite.json` | 40 tasks | Dev set with questions, gold answers, and reasoning plans. Use for prototyping. |
-| `deepsynth_questions_only_all.json` | 120 tasks | Test set — questions only. Submit predictions via the leaderboard. |
-| `decompositions/*.json` | — | Intermediate-answer decompositions for selected tasks. |
+The benchmark ships as **120 expert-curated tasks** in two splits:
+
+| File | Tasks | Description |
+|------|------:|-------------|
+| `DEEPSYNTH_lite.json` | 40 | **Dev set** — questions, gold answers, and full decompositions with intermediate answers. Use for prototyping, debugging, and local scoring. |
+| `deepsynth_questions_only_all.json` | 80 | **Test set** — questions only. Gold answers are held private; submit predictions via the leaderboard. |
+| `decompositions/*.json` | — | Intermediate-answer decompositions for dev tasks. |
 | `intermediate_answers_schemas/*.json` | — | JSON Schemas defining intermediate-answer formats. |
 
 ```python
@@ -105,24 +143,21 @@ tasks = json.load(open(path))
 
 ## 📊 Evaluation
 
-DeepSynth reports three complementary metrics:
+DEEPSYNTH reports five complementary metrics:
 
 | Metric | What it measures |
 |--------|------------------|
-| **Exact Match (EM)** | Strict: every key-value pair must match the gold answer. |
-| **F1** | Partial credit across correct key-value pairs. |
-| **LLM Judge** | Semantic equivalence with small numerical tolerance (1–5.5%). |
+| **F1 / Precision / Recall** | Token-level overlap between predicted and gold answers, averaged over tasks. |
+| **Exact Match (EM)** | Fraction of tasks where predicted == gold (strict structured-equality check). |
+| **LLM Judge** | Semantic-equivalence scoring with small numerical tolerance (1–5.5%), via a strong frozen judge model. |
 
 Run evaluation locally:
 
 ```bash
 python scripts/evaluation/eval_static_score.py \
     --predictions your_predictions.json \
-    --split test \
-    --output results.json
+    --split dev
 ```
-
-The script prints aggregate scores and writes a per-task breakdown to `results.json`.
 
 ### Prediction format
 
@@ -133,71 +168,37 @@ The script prints aggregate scores and writes a per-task breakdown to `results.j
 }
 ```
 
-For **leaderboard submissions**, wrap predictions in the full [submission schema](scripts/evaluation/submission_schema.json) — see below.
+For **leaderboard submissions** (test split), wrap predictions in the full submission schema — see below.
 
 ---
 
 ## 📤 Submitting to the Leaderboard
 
-We use a **PR-based submission flow** for transparency and review.
+We accept submissions **two ways** — pick whichever is easier:
 
-### Step 1 — Produce a submission file
+### 🤗 Option A — Upload form on the Leaderboard Space
 
-Wrap your predictions with required metadata. Full spec:
-[`scripts/evaluation/submission_schema.json`](scripts/evaluation/submission_schema.json).
+Fastest path. Go to the [**Submit tab**](https://huggingface.co/spaces/DeepSynthesisTeam/deepsynth-leaderboard) on the Hugging Face Space, fill in your agent's metadata, upload your predictions JSON, and submit. A maintainer reviews and scores it within about a week.
 
-Minimal example:
+### 🔀 Option B — Pull request (for Git-native workflows)
 
-```json
-{
-  "schema_version": "1.0.0",
-  "metadata": {
-    "agent_name": "MyAgent-v1",
-    "base_model": "gpt-4o-2024-08-06",
-    "scaffold": "ReAct",
-    "tools_used": ["web_search", "python_interpreter"],
-    "organization": "Your Org",
-    "contact_email": "you@example.org",
-    "code_url": "https://github.com/you/your-agent",
-    "submission_date": "2026-04-18",
-    "split": "test",
-    "num_seeds": 3,
-    "uses_external_retrieval": true
-  },
-  "predictions": {
-    "001": {"answer": {"Sweden": 1.2, "Finland": 0.8}, "cost_usd": 0.42, "latency_s": 18.3},
-    "002": {"answer": {"Brunei": -0.67}, "cost_usd": 0.31, "latency_s": 14.1}
-  }
-}
-```
-
-Per-task `cost_usd`, `latency_s`, `num_tool_calls`, and token counts are optional but strongly encouraged — the leaderboard surfaces efficiency rankings that help your method stand out.
-
-### Step 2 — Validate locally
-
-```bash
-python scripts/evaluation/validate_submission.py my_submission.json --strict
-```
-
-### Step 3 — Open a PR
-
-Fork this repo and add your file to `submissions/`:
-
-```
-submissions/2026-04-18-yourorg-agentname.json
-```
-
-CI runs schema validation and score computation automatically. Once a maintainer merges, your row appears on the [leaderboard](https://huggingface.co/spaces/DeepSynthesisTeam/deepsynth-leaderboard) within ~5 minutes.
+1. Produce a submission JSON conforming to [`scripts/evaluation/submission_schema.json`](scripts/evaluation/submission_schema.json) — metadata block + predictions map.
+2. Validate locally:
+   ```bash
+   python scripts/evaluation/validate_submission.py my_submission.json --strict
+   ```
+3. Fork this repo, add your file under `submissions/YYYY-MM-DD-org-agentname.json`, and open a PR.
+4. CI validates the schema; a maintainer reviews and merges.
 
 ### What we require
 
-- A **public `code_url`** that reproduces your numbers. Submissions without reproducible code will not be accepted.
-- Honest metadata. Misreporting scaffold or tool access is grounds for retraction.
-- We reserve the right to ask for a run trace for spot-check verification.
+- **Public `code_url`** that reproduces your numbers. Submissions without reproducible code won't be accepted.
+- **Honest metadata.** Misreporting scaffold or tool access is grounds for retraction.
+- We may request a run trace for spot-check verification.
 
 ### Retraction policy
 
-Email the contact on the submission file. Corrections and retractions are logged transparently in the leaderboard history.
+Email the contact on the submission. Corrections and retractions are logged transparently in the leaderboard history.
 
 ---
 
@@ -210,21 +211,24 @@ Runnable baseline agents live in [`scripts/baselines/`](scripts/baselines/):
 - `codeact/` — CodeAct style with full Python sandbox.
 - `plan_and_execute/` — Two-stage planner + executor.
 
-Each baseline has its own `README.md` with model setup, API key requirements, and an end-to-end run command.
+Each baseline has its own `README.md` with setup, API key requirements, and an end-to-end run command.
 
 ---
 
 ## 📜 Citation
 
-If you use DeepSynth in your research, please cite:
+If you use DEEPSYNTH in your research, please cite:
 
 ```bibtex
-@inproceedings{paul-etal-2026-deepinfosynth,
-  title = {A Benchmark for Deep Information Synthesis},
-  author = {Paul, Debjit and Murphy, Daniel and Gritta, Milan and Cardenas, Ronald and Prokhorov, Victor and Bolliger, Lena Sophia and Toker, Aysim and Miles, Roy and Oncescu, Andreea-Maria and Sivakumar, Jasivan Alex and Borchert, Philipp and Elezi, Ismail and Zhang, Meiru and Lee, Ka Yiu and Zhang, Guchun and Wang, Jun and Lampouras, Gerasimos},
-  booktitle = {The Fourteenth International Conference on Learning Representations},
-  month = apr,
-  year = {2026},
+@inproceedings{paul2026deepsynth,
+  title     = {{DEEPSYNTH}: A Benchmark for Deep Information Synthesis},
+  author    = {Debjit Paul and Daniel Murphy and Milan Gritta and Ronald Cardenas and Victor Prokhorov
+               and Lena Sophia Bolliger and Aysim Toker and Roy Miles and Andreea-Maria Oncescu and
+               Jasivan Alex Sivakumar and Philipp Borchert and Ismail Elezi and Meiru Zhang and
+               Ka Yiu Lee and Guchun Zhang and Jun Wang and Gerasimos Lampouras},
+  booktitle = {The Fourteenth International Conference on Learning Representations (ICLR)},
+  year      = {2026},
+  url       = {https://openreview.net/forum?id=0Dhpt9aY3n}
 }
 ```
 
@@ -238,6 +242,6 @@ Apache License 2.0. See [LICENSE](LICENSE).
 
 ## 🙏 Acknowledgements
 
-Developed across Huawei Noah's Ark Lab, Imperial College London, UCL, University of Zurich, University of Sheffield, and University of Cambridge.
+Developed across Huawei Noah's Ark Lab, Imperial College London, UCL Centre for AI, University of Zurich, University of Sheffield, and University of Cambridge.
 
 > *Disclaimer: This open-source project is not an official Huawei product; Huawei is not expected to provide support.*
