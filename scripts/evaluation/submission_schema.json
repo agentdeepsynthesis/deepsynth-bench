@@ -1,192 +1,39 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/agentdeepsynthesis/deepsynth-bench/blob/main/scripts/evaluation/submission_schema.json",
-  "title": "DeepSynth Leaderboard Submission",
-  "description": "Schema for a single submission to the DeepSynth benchmark leaderboard.",
-  "type": "object",
-  "required": ["schema_version", "metadata", "predictions"],
-  "additionalProperties": false,
-  "properties": {
-    "schema_version": {
-      "type": "string",
-      "description": "Version of this submission schema. Must match the current release.",
-      "enum": ["1.0.0"]
-    },
-    "metadata": {
-      "type": "object",
-      "required": [
-        "agent_name",
-        "base_model",
-        "scaffold",
-        "tools_used",
-        "organization",
-        "contact_email",
-        "code_url",
-        "submission_date",
-        "split",
-        "num_seeds"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "agent_name": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 80,
-          "description": "Display name for the leaderboard (e.g. 'ReAct-GPT4o', 'DeepSynth-Planner-v2')."
-        },
-        "base_model": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 120,
-          "description": "Underlying LLM with version pin (e.g. 'gpt-4o-2024-08-06', 'claude-opus-4-6', 'deepseek-v3')."
-        },
-        "scaffold": {
-          "type": "string",
-          "enum": ["none", "ReAct", "CodeAct", "Plan-and-Execute", "Reflexion", "MCTS", "Custom"],
-          "description": "Agent scaffold type. Use 'Custom' only if none of the standard options fit, and describe it in scaffold_notes."
-        },
-        "scaffold_notes": {
-          "type": "string",
-          "maxLength": 500,
-          "description": "Optional short description, required if scaffold == 'Custom'."
-        },
-        "tools_used": {
-          "type": "array",
-          "minItems": 0,
-          "uniqueItems": true,
-          "items": {
-            "type": "string",
-            "enum": [
-              "web_search",
-              "web_browse",
-              "python_interpreter",
-              "wolfram_alpha",
-              "wikipedia_api",
-              "calculator",
-              "file_reader",
-              "other"
-            ]
-          },
-          "description": "Tools the agent had access to during evaluation."
-        },
-        "tools_notes": {
-          "type": "string",
-          "maxLength": 500,
-          "description": "Optional clarification (e.g. specific search provider, browser version)."
-        },
-        "organization": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 120,
-          "description": "Submitting institution or team."
-        },
-        "contact_email": {
-          "type": "string",
-          "format": "email",
-          "description": "Contact for questions or retraction requests. Not displayed publicly."
-        },
-        "paper_url": {
-          "type": "string",
-          "format": "uri",
-          "description": "Optional link to a paper or technical report describing the method."
-        },
-        "code_url": {
-          "type": "string",
-          "format": "uri",
-          "description": "Public URL to the code that produced these predictions. Required for leaderboard acceptance."
-        },
-        "submission_date": {
-          "type": "string",
-          "format": "date",
-          "description": "ISO date (YYYY-MM-DD) when predictions were generated."
-        },
-        "split": {
-          "type": "string",
-          "enum": ["dev", "test", "full"],
-          "description": "Which split was evaluated. Only 'test' and 'full' submissions are eligible for the public leaderboard."
-        },
-        "num_seeds": {
-          "type": "integer",
-          "minimum": 1,
-          "maximum": 20,
-          "description": "Number of independent runs averaged to produce these predictions. Minimum 1."
-        },
-        "uses_external_retrieval": {
-          "type": "boolean",
-          "description": "Whether the agent used live external retrieval (web, APIs) during inference."
-        },
-        "notes": {
-          "type": "string",
-          "maxLength": 1000,
-          "description": "Optional free-form notes shown on the leaderboard detail page."
-        }
+  "title": "DEEPSYNTH Leaderboard Submission",
+  "description": "Schema for a submission to the DEEPSYNTH leaderboard. A submission is a JSON ARRAY of objects, one per task, each containing the original 'Question Number' and the agent's 'answer'. This format is consumed directly by scripts/evaluation/eval_static_score.py.",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "required": ["Question Number", "answer"],
+    "additionalProperties": true,
+    "properties": {
+      "Question Number": {
+        "oneOf": [
+          { "type": "string", "pattern": "^[0-9]{1,3}$" },
+          { "type": "integer", "minimum": 1, "maximum": 120 }
+        ],
+        "description": "Task ID matching the DEEPSYNTH question file. Dev split: 1-40. Test split: 1-80. May be an integer or a zero-padded string."
       },
-      "allOf": [
-        {
-          "if": {
-            "properties": { "scaffold": { "const": "Custom" } }
-          },
-          "then": {
-            "required": ["scaffold_notes"]
-          }
-        }
-      ]
-    },
-    "predictions": {
-      "type": "object",
-      "description": "Map from task ID (zero-padded 3-digit string) to the agent's answer.",
-      "minProperties": 1,
-      "patternProperties": {
-        "^[0-9]{3}$": {
-          "type": "object",
-          "required": ["answer"],
-          "additionalProperties": false,
-          "properties": {
-            "answer": {
-              "description": "The agent's answer for this task. Format follows DeepSynth task-specific schema (see intermediate_answers_schemas/).",
-              "oneOf": [
-                { "type": "object" },
-                { "type": "array" },
-                { "type": "string" },
-                { "type": "number" },
-                { "type": "boolean" },
-                { "type": "null" }
-              ]
-            },
-            "cost_usd": {
-              "type": "number",
-              "minimum": 0,
-              "description": "Optional: estimated USD cost to produce this answer (API + compute)."
-            },
-            "latency_s": {
-              "type": "number",
-              "minimum": 0,
-              "description": "Optional: wall-clock time in seconds to produce this answer."
-            },
-            "num_tool_calls": {
-              "type": "integer",
-              "minimum": 0,
-              "description": "Optional: total tool invocations made while solving this task."
-            },
-            "num_tokens_input": {
-              "type": "integer",
-              "minimum": 0,
-              "description": "Optional: total input tokens consumed across all LLM calls for this task."
-            },
-            "num_tokens_output": {
-              "type": "integer",
-              "minimum": 0,
-              "description": "Optional: total output tokens produced across all LLM calls for this task."
-            },
-            "trace_url": {
-              "type": "string",
-              "format": "uri",
-              "description": "Optional: link to a full trace (e.g. LangSmith, Weights & Biases) for this task."
-            }
-          }
-        }
+      "answer": {
+        "description": "The agent's final output for this task. Preferred: a JSON object / array / number matching the task's expected answer schema (see intermediate_answers_schemas/ in the HF dataset). Also accepted: a raw string — if so, the evaluator extracts JSON after an optional '<Answer>:' marker. Do NOT include chain-of-thought, reasoning traces, or tool transcripts here.",
+        "oneOf": [
+          { "type": "object" },
+          { "type": "array" },
+          { "type": "string" },
+          { "type": "number" },
+          { "type": "boolean" },
+          { "type": "null" }
+        ]
       },
-      "additionalProperties": false
+      "cost_usd":          { "type": "number",  "minimum": 0, "description": "Optional: estimated USD cost for this task." },
+      "latency_s":         { "type": "number",  "minimum": 0, "description": "Optional: wall-clock seconds for this task." },
+      "num_tool_calls":    { "type": "integer", "minimum": 0, "description": "Optional: total tool invocations for this task." },
+      "num_tokens_input":  { "type": "integer", "minimum": 0, "description": "Optional: total input tokens for this task." },
+      "num_tokens_output": { "type": "integer", "minimum": 0, "description": "Optional: total output tokens for this task." },
+      "trace_url":         { "type": "string",  "format": "uri", "description": "Optional: link to a full trace (LangSmith, W&B, etc.)." }
     }
   }
 }
